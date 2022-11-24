@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-export default function FilterMenu({ brandlist, handleAppliedFilters, handleClearFiltersAndSort }) {
+export default function FilterMenu({ brandlist, handleAppliedFilters, handleSortFilter, handleClearFiltersAndSort }) {
 
     const [isFiltersOpen, setIsFiltersOpen] = useState(false);
     const [filterItemChecked, setFilterItemChecked] = useState(new Array(brandlist.length).fill(false));
@@ -28,6 +28,10 @@ export default function FilterMenu({ brandlist, handleAppliedFilters, handleClea
         setFilterItemChecked(filterItemsCheckedUpdate);
     }
 
+    const handleSortButtonClick = () => {
+        handleSortFilter();
+    }
+
     const handleClearButtonClick = () => {
         setFilterItemChecked(new Array(brandlist.length).fill(false));
         setSelectedFilters([]);
@@ -40,8 +44,8 @@ export default function FilterMenu({ brandlist, handleAppliedFilters, handleClea
                 <button onClick={handleFilterMenuButtonClick} className="px-4 py-2 bg-blue-500 text-white rounded-lg">
                     Filters
                 </button>
-                <button className="px-4 py-2 mx-4 bg-blue-500 text-white rounded-lg">
-                    Sort
+                <button onClick={handleSortButtonClick} className="px-4 py-2 mx-4 bg-blue-500 text-white rounded-lg">
+                    Sort by Price (Low to high)
                 </button>
                 <button onClick={handleClearButtonClick} className="px-4 py-2 bg-blue-500 text-white rounded-lg">
                     Clear Filters and Sort

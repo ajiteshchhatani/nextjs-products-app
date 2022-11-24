@@ -17,7 +17,10 @@ export async function getServerSideProps(context) {
       brand: p.brand
     }
   });
-  const filters = [...new Set(brands)]
+  //const filters = [...new Set(brands)]
+  const filters = brands.filter((b, i, self) =>
+    i === self.findIndex((u) => (u.brand === b.brand)
+    ))
   return {
     props: {
       products,
@@ -35,14 +38,20 @@ export default function Home({ products, filters }) {
   }, [products])
 
   const handleAppliedFilters = (brands) => {
-    if(brands.length > 0) {
+    if (brands.length > 0) {
       let appliedFilters = brands.map(b => b.brand);
-      let filteredProducts = products.filter(p =>  appliedFilters.includes(p.brand))
+      let filteredProducts = products.filter(p => appliedFilters.includes(p.brand))
       setProductsList(filteredProducts);
     }
     else {
       setProductsList(products);
     }
+  }
+
+  const handleSortFilter = () => {
+    let sortedProductsByPrice = [...productsList];
+    sortedProductsByPrice = sortedProductsByPrice.sort((a, b) => (a.price > b.price) ? 1 : (b.price > a.price) ? -1 : 0);
+    setProductsList(sortedProductsByPrice);
   }
 
   const handleClearFiltersAndSort = () => {
@@ -62,27 +71,15 @@ export default function Home({ products, filters }) {
           <FilterMenu
             brandlist={filters}
             handleAppliedFilters={(brands) => handleAppliedFilters(brands)}
+            handleSortFilter={handleSortFilter}
             handleClearFiltersAndSort={handleClearFiltersAndSort}
           />
         </div>
         <Card products={productsList} />
-        <div>
+        <div className="my-4">
           <Pagination />
         </div>
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
     </div>
   )
 }
