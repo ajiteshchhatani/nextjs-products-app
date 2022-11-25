@@ -47,7 +47,7 @@ export default function Pagination() {
                 {
                     Array.from({ length: pagesCount }).map((i, index) => (
                         <button 
-                            className={`w-8 h-8 hover:bg-white hover:text-black ${page === index  ? 'bg-blue-900 text-white' : ''}`}
+                            className={`w-8 h-8 hover:bg-white hover:text-black ${page === index  ? 'bg-blue-500 text-white' : ''}`}
                             key={index + 1}
                             onClick={() => handlePageButtonClick(index)}
                         >

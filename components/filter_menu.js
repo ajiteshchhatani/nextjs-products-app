@@ -41,21 +41,21 @@ export default function FilterMenu({ brandlist, handleAppliedFilters, handleSort
     return (
         <div className="flex flex-col">
             <div className="flex mb-2">
-                <button onClick={handleFilterMenuButtonClick} className="px-4 py-2 bg-blue-500 text-white rounded-lg">
+                <button onClick={handleFilterMenuButtonClick} className="px-4 py-1 bg-blue-500 text-white rounded-lg md:py-2">
                     Filters
                 </button>
-                <button onClick={handleSortButtonClick} className="px-4 py-2 mx-4 bg-blue-500 text-white rounded-lg">
+                <button onClick={handleSortButtonClick} className="px-4 py-1 mx-4 bg-blue-500 text-white rounded-lg md:py-2">
                     Sort by Price (Low to high)
                 </button>
-                <button onClick={handleClearButtonClick} className="px-4 py-2 bg-blue-500 text-white rounded-lg">
+                <button onClick={handleClearButtonClick} className="px-4 py-1 bg-blue-500 text-white rounded-lg md:py-2">
                     Clear Filters and Sort
                 </button>
             </div>
             <div className={`${!isFiltersOpen ? `hidden` : `block`} bg-white rounded p-4`}>
-                <ul className="flex justify-between">
+                <ul className="flex flex-col md:flex-row md:justify-between">
                     {
                         brandlist.map((item, index) => (
-                            <li key={item.id}>
+                            <li key={item.id} className="max-w-1/2 box-border">
                                 <label htmlFor={item.brand}>
                                     <input
                                         className="mr-1"

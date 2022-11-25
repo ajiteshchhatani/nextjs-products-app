@@ -2,15 +2,15 @@ import Image from "next/image";
 
 export default function Card({ products }) {
     return (
-        <div className="flex flex-col px-4 py-0 md:flex-row md:flex-wrap md:justify-between md:p-0">
+        <div className="flex flex-row flex-wrap justify-between">
             {
                 products.map((product) => (
-                    <div key={product.id} className="md:basis-1/5 md:max-w-xs lg:max-w-sm mb-4 rounded bg-white shadow-lg">
+                    <div key={product.id} className="w-45 md:max-w-xs lg:max-w-sm mb-4 rounded bg-white shadow-lg">
                         <Image
                             src={product.thumbnail}
                             width={400}
                             height={0}
-                            className="max-w-xs lg:max-w-sm md:h-52"
+                            className="h-24 md:max-w-xs lg:max-w-sm md:h-52"
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             alt={`${product.title} alt image`}
                         />

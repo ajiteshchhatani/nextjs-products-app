@@ -8,6 +8,12 @@ module.exports = {
     extend: {
       colors: {
         "background-gray": "#F3F5F9"
+      },
+      maxWidth: {
+        '1/2': '50%'
+      },
+      width: {
+        '45': '45%'
       }
     },
   },
