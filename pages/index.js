@@ -1,11 +1,9 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { useEffect, useState } from 'react';
 import Card from '../components/card';
 import FilterMenu from '../components/filter_menu';
 import Pagination from '../components/pagination';
-import styles from '../styles/Home.module.css'
-import { fetchProductBrands, fetchProductData } from '../utils/products'
+import { fetchProductData } from '../utils/products'
 
 export async function getServerSideProps(context) {
   const { limit, skip } = context.query
